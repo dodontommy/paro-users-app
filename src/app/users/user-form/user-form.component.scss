@@ -1,0 +1,9 @@
+.multi-form-group-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .side-by-side {
+    width: 33%;
+  }
+}

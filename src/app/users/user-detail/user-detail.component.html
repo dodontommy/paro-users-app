@@ -1,0 +1,43 @@
+<a routerLink="..">Go Back</a>
+<div class="card">
+  <div class="card-body">
+    <div class="basic information container">
+      <h3>Basic Information</h3>
+      <div class="row">
+        <div class="column left">Name:</div>
+        <div class="column right"> {{user.UserName}} </div>
+      </div>
+      <div class="row">
+        <div class="column left">Email:</div>
+        <div class="column right"> {{user.UserEmail}} </div>
+      </div>
+      <div class="row">
+        <div class="column left">Type:</div>
+        <div class="column right"> {{user.UserType}} </div>
+      </div>
+      <div class="row">
+        <div class="column left">Admin:</div>
+        <div class="column right"> {{user.UserIsAdmin ? "Yes" : "No"}} </div>
+      </div>
+    </div>
+    <div class="address information container">
+      <h3>Address Information</h3>
+      <div class="row">
+        <div class="column left">Street:</div>
+        <div class="column right"> {{user.Address.Street}} </div>
+      </div>
+      <div class="row">
+        <div class="column left">City:</div>
+        <div class="column right"> {{user.Address.City}} </div>
+      </div>
+      <div class="row">
+        <div class="column left">Zip:</div>
+        <div class="column right"> {{user.Address.Zip}} </div>
+      </div>
+      <div class="row">
+        <div class="column left">State:</div>
+        <div class="column right"> {{user.Address.State}} </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="userForm">
+      <h4>Basic Information</h4>
+      <div class="form-group">
+        <label class="col-md-4">Name</label>
+        <input type="text" class="form-control" formControlName="UserName" #UserName [(ngModel)] = "user.UserName"/>
+      </div>
+      <div *ngIf="userForm.controls['UserName'].invalid && (userForm.controls['UserName'].dirty || userForm.controls['UserName'].touched)" class="alert alert-danger">
+        <div *ngIf="userForm.controls['UserName'].errors.required">
+          User Name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Email</label>
+        <input type="text" class="form-control" [email]="true" formControlName="UserEmail" #UserEmail [(ngModel)] = "user.UserEmail">
+        <div *ngIf="userForm.controls['UserEmail'].invalid && (userForm.controls['UserEmail'].dirty || userForm.controls['UserEmail'].touched)" class="alert alert-danger">
+          <div *ngIf="userForm.controls['UserEmail'].errors.required">
+            User Email is required.
+          </div>
+        </div>
+      </div>
+      <div class="multi-form-group-container">
+        <div class="form-group side-by-side">
+          <label class="col-md-4">User Type</label>
+          <select class="form-control" (change)="userTypeChanged()" formControlName="UserType" #UserType [(ngModel)] = "user.UserType">
+            <option value="freelancer">Freelancer</option>
+            <option value="client">Client</option>
+            <option value="internal">Internal</option>
+          </select>
+        </div>
+        <div class="form-group side-by-side">
+          <label class="col-md-4">Admin</label>
+          <fieldset [disabled]="user.UserType != 'internal'">
+            <input type="radio" [value]="true" formControlName="UserIsAdmin" #UserIsAdmin [(ngModel)] = "user.UserIsAdmin">
+            Yes
+            <input type="radio" [value]="false" formControlName="UserIsAdmin" #UserIsAdmin [(ngModel)] = "user.UserIsAdmin">
+            No
+          </fieldset>
+        </div>
+      </div>
+      <div class="form-group">
+        <h4>Address Information</h4>
+        <div class="form-group">
+          <label class="col-md-4">Street Address</label>
+          <input type="text" class="form-control" formControlName="UserStreet" #UserStreet [(ngModel)] = "user.Address.Street">
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">City</label>
+          <input type="text" class="form-control" formControlName="UserCity" #UserCity [(ngModel)] = "user.Address.City">
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">State</label>
+          <input type="text" class="form-control" formControlName="UserState" #UserState [(ngModel)] = "user.Address.State">
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Zip</label>
+          <input type="text" class="form-control" formControlName="UserZip" #UserZip [(ngModel)] = "user.Address.Zip">
+        </div>
+      </div>
+      <div class='form-group'>
+        <button (click) = "handleSubmit()" type="button" class="btn btn-primary" [disabled]="userForm.invalid" #formSubmit>
+          <span *ngIf="user.id">Update User</span>
+          <span *ngIf="!user.id">Create User</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

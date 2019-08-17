@@ -1,0 +1,24 @@
+<table *ngIf="users.length > 0 else empty" class="table table-hover" id="table">
+  <thead>
+  <tr>
+      <td>User Name</td>
+      <td>User Email</td>
+      <td>User Type</td>
+      <td>Admin</td>
+      <td colspan="2">Actions</td>
+  </tr>
+  </thead>
+    <tbody>
+      <tr *ngFor="let user of users" (click)="showUserDetails(user)">
+        <td>{{ user.UserName }}</td>
+        <td>{{ user.UserEmail }}</td>
+        <td>{{ user.UserType }}</td>
+        <td>{{ user.UserIsAdmin ? "Yes" : "No" }}</td>
+        <td><a [routerLink]="[user.id, 'edit']" class="btn btn-primary">Edit</a></td>
+        <td><button (click)="openDeleteModal(user)" class="btn btn-danger" [disabled]="user.UserIsAdmin">Delete</button></td>
+      </tr>
+    </tbody>
+</table>
+<ng-template #empty>
+  <div>You have no users yet!</div>
+</ng-template>
