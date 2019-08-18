@@ -6,6 +6,7 @@ const { makeExecutableSchema } = require("graphql-tools");
 const typeDefs = require("./schema").Schema;
 const resolvers = require("./resolvers").Resolvers;
 
+// Create the schema to define my graphql endpoint
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
@@ -27,11 +28,11 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Start the graphql API
 app.use(
   "/graphql",
   graphqlHTTP(request => ({
     schema: schema,
-    variables: request['variables'],
     graphiql: true
   }))
 );

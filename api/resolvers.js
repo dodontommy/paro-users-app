@@ -1,5 +1,6 @@
 const { GraphQLScalarType } = require("graphql");
 
+// Define custome Address scalar type so apollo will accept it
 const Address = new GraphQLScalarType({
   name: "Address",
   description: "Address",
@@ -14,6 +15,7 @@ const Address = new GraphQLScalarType({
   }
 });
 
+// Users in-memory store, seeded with one user
 const users = [
   {
     id: 1,
@@ -30,6 +32,7 @@ const users = [
   }
 ];
 
+// Create resolvers describing the queries and mutations accessible by the graph api
 const resolvers = {
   Query: {
     Users: () => users,

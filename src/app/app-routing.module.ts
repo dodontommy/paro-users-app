@@ -5,7 +5,7 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserAddComponent } from './users/user-add/user-add.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 
-
+// Define routes for frontend app navigation
 const routes: Routes = [
 {
   path: 'users',
