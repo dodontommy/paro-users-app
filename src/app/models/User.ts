@@ -1,14 +1,14 @@
 import BaseModel from './BaseModel';
 
 export default class User extends BaseModel {
-  UserName: string;
-  UserEmail: string;
-  UserIsAdmin: boolean;
-  UserType: string;
-  Address: object;
+  name: string;
+  email: string;
+  is_admin: boolean;
+  type: string;
+  address: object;
 
   constructor() {
     super();
-    this.Address = new Object;
+    this.address = new Object;
   }
 }

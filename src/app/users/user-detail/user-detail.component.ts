@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UsersService } from '../users.service';
 import User from '../../models/User';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
+import { GetUser } from '../graphql';
 
 @Component({
   selector: 'app-user-detail',
@@ -11,13 +13,21 @@ import User from '../../models/User';
 })
 export class UserDetailComponent implements OnInit {
   user: User;
-  constructor(private route: ActivatedRoute, private router: Router, private us: UsersService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private apollo: Apollo) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-        this.us.read(params['id']).subscribe(res => {
-          this.user = res;
-      });
+      this.apollo
+        .watchQuery({
+          query: GetUser,
+          variables: {
+            id: params['id']
+          },
+          fetchPolicy: "network-only"
+        })
+        .valueChanges.subscribe(data => {
+          this.user = data.data.User;
+        });
     });
   }
 

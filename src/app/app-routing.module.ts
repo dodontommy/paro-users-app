@@ -13,7 +13,7 @@ const routes: Routes = [
   data: { title: 'List of users'}
 },
 {
-  path: 'users/:id',
+  path: 'users/view/:id',
   component: UserDetailComponent,
   data: { title: 'User Details'}
 },
@@ -23,7 +23,7 @@ const routes: Routes = [
   data: { title: 'Add User' }
 },
 {
-  path: 'users/:id/edit',
+  path: 'users/edit/:id',
   component: UserEditComponent,
   data: { title: 'Edit User' }
 },
