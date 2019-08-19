@@ -45,6 +45,12 @@ const resolvers = {
         users.reduce((id, user) => {
           return Math.max(id, user.id);
         }, -1) + 1;
+
+      if (args.type != "internal") {
+        if (args.is_admin) {
+          throw new Error("Only internal users can be administrators");
+        }
+      }
       const newUser = {
         id: nextId,
         name: args.name,
@@ -68,6 +74,11 @@ const resolvers = {
       const index = users.findIndex(
         user => user.id == args.id
       );
+      if (args.type != "internal") {
+        if (args.is_admin) {
+          throw new Error("Only internal users can be administrators");
+        }
+      }
       users[index].name = args.name;
       users[index].email = args.email;
       users[index].address = args.address;

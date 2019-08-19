@@ -18,7 +18,7 @@ export class UserDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.apollo
-        .watchQuery({
+        .watchQuery<Response>({
           query: GetUser,
           variables: {
             id: params['id']
@@ -26,7 +26,7 @@ export class UserDetailComponent implements OnInit {
           fetchPolicy: "network-only"
         })
         .valueChanges.subscribe(data => {
-          this.user = data.data.User;
+          this.user = data.data['User'];
         });
     });
   }

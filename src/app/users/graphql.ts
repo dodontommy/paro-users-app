@@ -1,4 +1,4 @@
-// Define the graphql queries needed to interact with the graph api
+// Define the graphql queries & mutations needed to interact with the graph api
 
 import gql from 'graphql-tag';
 

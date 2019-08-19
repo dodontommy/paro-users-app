@@ -33,6 +33,13 @@ export class UserListComponent implements OnInit {
     this.router.navigate(['users', 'view', user.id]);
   }
 
+  removeFromUsers(id) {
+    let user = this.users.find(user => user.id == id);
+    console.log(user);
+    console.log(this.users.indexOf(user));
+    this.users.splice(this.users.indexOf(user), 1);
+  }
+
   deleteUser(user) {
     this.apollo
       .mutate({
@@ -43,8 +50,7 @@ export class UserListComponent implements OnInit {
       })
       .subscribe(
         ({ data }) => {
-          let index = this.users.find(user => user.id == data.deleteUser.id)
-          this.users.splice(index, 1);
+          this.removeFromUsers(data.deleteUser.id);
         },
         error => {
           console.log("there was an error sending the query", error);
@@ -54,12 +60,12 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.apollo
-      .watchQuery({
+      .watchQuery<Response>({
         query: CurrentUsers,
         fetchPolicy: "network-only"
       })
       .valueChanges.subscribe(data => {
-        this.users = data.data.Users;
+        this.users = data.data['Users'];
       });
   }
 

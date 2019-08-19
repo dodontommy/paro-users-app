@@ -33,8 +33,8 @@ export class UserFormComponent implements OnInit {
   }
 
   userTypeChanged(event) {
-    if (this.user['UserType'] != 'internal') {
-      this.user['UserIsAdmin'] = false;
+    if (this.user['type'] != 'internal') {
+      this.user['is_admin'] = false;
     }
   }
 

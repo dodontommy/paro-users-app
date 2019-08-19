@@ -40,7 +40,7 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.apollo
-        .watchQuery({
+        .watchQuery<Response>({
           query: GetUser,
           variables: {
             id: params['id']
@@ -48,8 +48,7 @@ export class UserEditComponent implements OnInit {
           fetchPolicy: "network-only"
         })
         .valueChanges.subscribe(data => {
-          this.user = data.data.User;
-          console.log(this.user);
+          this.user = data.data['User'];
         });
     });
   }
