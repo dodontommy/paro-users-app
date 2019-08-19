@@ -1,23 +1,42 @@
-const express = require('express'),
-    path = require('path'),
-    bodyParser = require('body-parser'),
-    cors = require('cors'),
-    mongoose = require('mongoose'),
-    config = require('./DB');
+const express = require("express");
+const cors = require("cors");
+const graphqlHTTP = require("express-graphql");
+const { makeExecutableSchema } = require("graphql-tools");
 
+const typeDefs = require("./schema").Schema;
+const resolvers = require("./resolvers").Resolvers;
 
-const userRoute = require('./routes/user.route')
-mongoose.Promise = global.Promise;
-mongoose.connect(config.DB, { useNewUrlParser: true }).then(
-      () => {console.log('Database is connected') },
-      err => { console.log('Can not connect to the database'+ err)}
-    );
+// Create the schema to define my graphql endpoint
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers,
+  logger: {
+    log: e => console.log(e)
+  }
+});
 
-const app = express();
-app.use(bodyParser.json());
+var app = express();
+
 app.use(cors());
-app.use('/users', userRoute);
-const port = process.env.PORT || 4000;
 
-const server = app.listen(port);
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
+// Start the graphql API
+app.use(
+  "/graphql",
+  graphqlHTTP(request => ({
+    schema: schema,
+    graphiql: true
+  }))
+);
+
+app.listen(4000);
+
+console.log("Running a GraphQL API server at http://localhost:4000/graphql");

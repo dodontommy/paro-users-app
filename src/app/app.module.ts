@@ -10,10 +10,10 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { UsersService } from './users/users.service';
 import { UserFormComponent } from './users/user-form/user-form.component';
 import { Modal } from './modal/modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GraphQLModule } from "./graphql.module";
 
 @NgModule({
   declarations: [
@@ -32,9 +32,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     BrowserAnimationsModule,
     SlimLoadingBarModule,
-    HttpClientModule
+    HttpClientModule,
+    GraphQLModule
   ],
-  providers: [UsersService],
+  providers: [],
   bootstrap: [AppComponent],
   entryComponents: [Modal]
 })

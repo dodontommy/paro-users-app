@@ -1,10 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import {fromEvent, Observable, Subscription} from 'rxjs';
-import {debounceTime, distinctUntilChanged, map, startWith, tap} from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UsersService } from '../users.service'
 import { Router } from '@angular/router';
-import User from '../../models/User';
 
 @Component({
   selector: 'app-user-form',
@@ -16,7 +12,7 @@ export class UserFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter();
 
   userForm: FormGroup;
-  constructor(private fb: FormBuilder, private us: UsersService, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.createForm();
   }
 
@@ -34,8 +30,8 @@ export class UserFormComponent implements OnInit {
   }
 
   userTypeChanged(event) {
-    if (this.user['UserType'] != 'internal') {
-      this.user['UserIsAdmin'] = false;
+    if (this.user['type'] != 'internal') {
+      this.user['is_admin'] = false;
     }
   }
 
