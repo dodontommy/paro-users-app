@@ -3,11 +3,11 @@ const schema = `
 
   type User {
     id: ID!
-    name: String
-    email: String
+    name: String!
+    email: String!
     address: Address
-    type: String
-    is_admin: Boolean
+    type: String!
+    is_admin: Boolean!
   }
 
   type Query {
