@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import User from '../../models/User';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
@@ -13,7 +12,7 @@ import { GetUser } from '../graphql';
 })
 export class UserDetailComponent implements OnInit {
   user: User;
-  constructor(private route: ActivatedRoute, private router: Router, private apollo: Apollo) { }
+  constructor(private route: ActivatedRoute, private apollo: Apollo) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {

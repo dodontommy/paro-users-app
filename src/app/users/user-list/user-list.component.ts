@@ -35,8 +35,6 @@ export class UserListComponent implements OnInit {
 
   removeFromUsers(id) {
     let user = this.users.find(user => user.id == id);
-    console.log(user);
-    console.log(this.users.indexOf(user));
     this.users.splice(this.users.indexOf(user), 1);
   }
 

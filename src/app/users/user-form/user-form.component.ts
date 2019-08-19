@@ -1,9 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import {fromEvent, Observable, Subscription} from 'rxjs';
-import {debounceTime, distinctUntilChanged, map, startWith, tap} from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import User from '../../models/User';
 
 @Component({
   selector: 'app-user-form',

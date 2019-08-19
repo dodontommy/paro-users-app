@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import User from '../../models/User';
 import { Apollo } from 'apollo-angular';
@@ -13,7 +12,6 @@ import { CreateUser } from '../graphql';
 })
 export class UserAddComponent implements OnInit {
   user: User;
-  userForm: FormGroup;
   constructor(private router: Router, private apollo: Apollo) { }
 
   addUser() {

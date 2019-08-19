@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import User from '../../models/User';
 import gql from 'graphql-tag';
@@ -12,7 +11,6 @@ import { Apollo } from 'apollo-angular';
   styleUrls: ['./user-edit.component.scss']
 })
 export class UserEditComponent implements OnInit {
-  userForm: FormGroup;
   user: User;
 
   constructor(private route: ActivatedRoute, private router: Router, private apollo: Apollo) {}
