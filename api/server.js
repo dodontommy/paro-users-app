@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const graphqlHTTP = require("express-graphql");
 const { makeExecutableSchema } = require("graphql-tools");
+const path = require('path');
 
 const typeDefs = require("./schema").Schema;
 const resolvers = require("./resolvers").Resolvers;
@@ -18,6 +19,8 @@ const schema = makeExecutableSchema({
 var app = express();
 
 app.use(cors());
+
+app.use(express.static('/app/dist/users-app'));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -37,6 +40,10 @@ app.use(
   }))
 );
 
-app.listen(4000);
+app.get('/*', function(req,res) {
+  res.sendFile(path.join('/dist/users-app/index.html'));
+});
+
+app.listen(process.env.PORT || 4000);
 
 console.log("Running a GraphQL API server at http://localhost:4000/graphql");

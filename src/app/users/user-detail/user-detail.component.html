@@ -4,38 +4,38 @@
       <h3>Basic Information</h3>
       <div class="row">
         <div class="column left">Name:</div>
-        <div class="column right"> {{user.name}} </div>
+        <div class="column right"> {{user['name']}} </div>
       </div>
       <div class="row">
         <div class="column left">Email:</div>
-        <div class="column right"> {{user.email}} </div>
+        <div class="column right"> {{user['email']}} </div>
       </div>
       <div class="row">
         <div class="column left">Type:</div>
-        <div class="column right"> {{user.type}} </div>
+        <div class="column right"> {{user['type']}} </div>
       </div>
       <div class="row">
         <div class="column left">Admin:</div>
-        <div class="column right"> {{user.is_admin ? "Yes" : "No"}} </div>
+        <div class="column right"> {{user['is_admin'] ? "Yes" : "No"}} </div>
       </div>
     </div>
     <div class="address information container">
       <h3>Address Information</h3>
       <div class="row">
         <div class="column left">Street:</div>
-        <div class="column right"> {{user.address.street}} </div>
+        <div class="column right"> {{user['address']['street']}} </div>
       </div>
       <div class="row">
         <div class="column left">City:</div>
-        <div class="column right"> {{user.address.city}} </div>
+        <div class="column right"> {{user['address']['city']}} </div>
       </div>
       <div class="row">
         <div class="column left">Zip:</div>
-        <div class="column right"> {{user.address.zip}} </div>
+        <div class="column right"> {{user['address']['zip']}} </div>
       </div>
       <div class="row">
         <div class="column left">State:</div>
-        <div class="column right"> {{user.address.state}} </div>
+        <div class="column right"> {{user['address']['state']}} </div>
       </div>
     </div>
   </div>

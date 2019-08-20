@@ -6,8 +6,10 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './modal.component.html'
 })
 export class Modal {
-  closeResult: string;
+  bodyText: string;
+  headerText: string;
+  activeModal: NgbActiveModal;
 
-  constructor(private activeModal: NgbActiveModal) {}
+  constructor(activeModal: NgbActiveModal) {}
 }
 
