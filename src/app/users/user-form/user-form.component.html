@@ -15,8 +15,11 @@
         <label class="col-md-4">Email</label>
         <input type="text" class="form-control" [email]="true" formControlName="UserEmail" #UserEmail [(ngModel)] = "user['email']">
         <div *ngIf="userForm.controls['UserEmail'].invalid && (userForm.controls['UserEmail'].dirty || userForm.controls['UserEmail'].touched)" class="alert alert-danger">
+          <div *ngIf="userForm.controls['UserEmail'].errors.email">
+            User Email must be a valid email address.
+          </div>
           <div *ngIf="userForm.controls['UserEmail'].errors.required">
-            User Email is required.
+            User Email must not be blank.
           </div>
         </div>
       </div>
