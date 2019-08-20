@@ -19,10 +19,10 @@ var app = express();
 
 app.use(cors());
 
-app.use(express.static(__dirname + '/dist/paro-users-app'));
+app.use(express.static(__dirname + '/dist/paro-demo-app'));
 
 app.get('/*', function(req,res) {
-  res.sendFile(path.join(__dirname+'/dist/paro-users-app/index.html'));
+  res.sendFile(path.join(__dirname+'/dist/paro-demo-app/index.html'));
 });
 
 app.use(function(req, res, next) {
