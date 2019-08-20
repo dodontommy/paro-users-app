@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import User from '../../models/User';
-import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
-import { CreateUser } from '../graphql';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-add',
@@ -12,22 +10,17 @@ import { CreateUser } from '../graphql';
 })
 export class UserAddComponent implements OnInit {
   user: User;
-  constructor(private router: Router, private apollo: Apollo) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   addUser() {
-    this.apollo
-        .mutate({
-          mutation: CreateUser,
-          variables: this.user
-        })
-        .subscribe(
-          ({ data }) => {
-            this.router.navigate(['users']);
-          },
-          error => {
-            console.log("there was an error sending the query", error);
-          }
-        );
+    this.userService.createUser(this.user).subscribe(
+      ({ data }) => {
+        this.router.navigate(['users']);
+      },
+      error => {
+        console.log("there was an error sending the query", error);
+      }
+    );
   }
 
   onSubmit() {

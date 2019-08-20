@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import User from '../../models/User';
-import gql from 'graphql-tag';
-import { UpdateUser, GetUser } from '../graphql';
-import { Apollo } from 'apollo-angular';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-edit',
@@ -13,41 +11,28 @@ import { Apollo } from 'apollo-angular';
 export class UserEditComponent implements OnInit {
   user: User;
 
-  constructor(private route: ActivatedRoute, private router: Router, private apollo: Apollo) {}
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) {}
 
   onSubmit() {
     this.updateUser();
   }
 
   updateUser() {
-    this.apollo
-        .mutate({
-          mutation: UpdateUser,
-          variables: this.user
-        })
-        .subscribe(
-          ({ data }) => {
-            this.router.navigate(['users']);
-          },
-          error => {
-            console.log("there was an error sending the query", error);
-          }
-        );
+    this.userService.updateUser(this.user).subscribe(
+      ({ data }) => {
+        this.router.navigate(['users']);
+      },
+      error => {
+        console.log("there was an error sending the query", error);
+      }
+    );
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.apollo
-        .watchQuery<Response>({
-          query: GetUser,
-          variables: {
-            id: params['id']
-          },
-          fetchPolicy: "network-only"
-        })
-        .valueChanges.subscribe(data => {
-          this.user = data.data['User'];
-        });
+      this.userService.getUser(params['id']).subscribe(data => {
+                this.user = data.data['User'];
+              });
     });
   }
 }
