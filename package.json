@@ -3,11 +3,16 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve | nodemon api/server",
+    "start": "node api/server.js",
+    "heroku-postbuild": "ng build --prod",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "engines": {
+    "node": "12.8.0",
+    "npm": "6.10.2"
   },
   "private": true,
   "dependencies": {
