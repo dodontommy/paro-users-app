@@ -46,4 +46,4 @@ app.get('/*', function(req,res) {
 
 app.listen(process.env.PORT || 4000);
 
-console.log("Running a GraphQL API server at http://localhost:4000/graphql");
+console.log("Running a GraphQL API server");
