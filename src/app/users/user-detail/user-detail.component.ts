@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import User from '../../models/User';
-import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
-import { GetUser } from '../graphql';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -12,21 +10,13 @@ import { GetUser } from '../graphql';
 })
 export class UserDetailComponent implements OnInit {
   user: User;
-  constructor(private route: ActivatedRoute, private apollo: Apollo) { }
+  constructor(private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.apollo
-        .watchQuery<Response>({
-          query: GetUser,
-          variables: {
-            id: params['id']
-          },
-          fetchPolicy: "network-only"
-        })
-        .valueChanges.subscribe(data => {
-          this.user = data.data['User'];
-        });
+      this.userService.getUser(params['id']).subscribe(data => {
+                this.user = data.data['User'];
+              });
     });
   }
 

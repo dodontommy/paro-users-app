@@ -3,9 +3,7 @@ import User from '../../models/User';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Modal } from '../../modal/modal.component';
 import { Router } from '@angular/router';
-import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
-import { CurrentUsers, DeleteUser } from '../graphql';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-users',
@@ -16,7 +14,7 @@ export class UserListComponent implements OnInit {
 
   users: User[];
 
-  constructor(private ms: NgbModal, private router: Router, private apollo: Apollo) {}
+  constructor(private ms: NgbModal, private router: Router, private userService: UserService) {}
 
   openDeleteModal(user) {
     const modalRef = this.ms.open(Modal);
@@ -39,32 +37,20 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(user) {
-    this.apollo
-      .mutate({
-        mutation: DeleteUser,
-        variables: {
-          id: user.id
-        }
-      })
-      .subscribe(
-        ({ data }) => {
-          this.removeFromUsers(data.deleteUser.id);
-        },
-        error => {
-          console.log("there was an error sending the query", error);
-        }
-      );
+    this.userService.deleteUser(user.id).subscribe(
+      ({ data }) => {
+        this.removeFromUsers(data.deleteUser.id);
+      },
+      error => {
+        console.log("there was an error sending the query", error);
+      }
+    );
   }
 
   ngOnInit() {
-    this.apollo
-      .watchQuery<Response>({
-        query: CurrentUsers,
-        fetchPolicy: "network-only"
-      })
-      .valueChanges.subscribe(data => {
-        this.users = data.data['Users'];
-      });
+    this.userService.getUsers().subscribe(data => {
+        this.users =  data.data['Users'];
+      });;
   }
 
 }
