@@ -19,7 +19,7 @@ export class UserListComponent implements OnInit {
   openDeleteModal(user) {
     const modalRef = this.ms.open(Modal);
     modalRef.componentInstance.headerText = "Are you sure?";
-    modalRef.componentInstance.bodyText = `This will permanently delete ${user.UserName}. You can never get them back.`;
+    modalRef.componentInstance.bodyText = `This will permanently delete ${user.name}. You can never get them back.`;
     modalRef.result.then((result) => {
       if (result == 'confirm') {
         this.deleteUser(user);
