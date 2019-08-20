@@ -20,7 +20,7 @@ var app = express();
 
 app.use(cors());
 
-app.use(express.static(__dirname + '/dist/users-app'));
+app.use(express.static(__dirname + '../app/dist/users-app'));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -41,7 +41,7 @@ app.use(
 );
 
 app.get('/*', function(req,res) {
-  res.sendFile(path.join(__dirname+'/dist/users-app/index.html'));
+  res.sendFile(path.join(__dirname+'../app/dist/users-app/index.html'));
 });
 
 app.listen(process.env.PORT || 4000);
