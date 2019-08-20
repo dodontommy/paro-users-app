@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const graphqlHTTP = require("express-graphql");
 const { makeExecutableSchema } = require("graphql-tools");
+const path = require('path');
 
 const typeDefs = require("./schema").Schema;
 const resolvers = require("./resolvers").Resolvers;
@@ -21,10 +22,6 @@ app.use(cors());
 
 app.use(express.static(__dirname + '/dist/paro-users-demo'));
 
-app.get('/*', function(req,res) {
-  res.sendFile(path.join(__dirname+'/dist/paro-users-demo/index.html'));
-});
-
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -42,6 +39,10 @@ app.use(
     graphiql: true
   }))
 );
+
+app.get('/*', function(req,res) {
+  res.sendFile(path.join(__dirname+'/dist/paro-users-demo/index.html'));
+});
 
 app.listen(process.env.PORT || 4000);
 
