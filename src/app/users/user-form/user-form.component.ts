@@ -29,7 +29,7 @@ export class UserFormComponent implements OnInit {
     });
   }
 
-  userTypeChanged(event) {
+  userTypeChanged() {
     if (this.user['type'] != 'internal') {
       this.user['is_admin'] = false;
     }
