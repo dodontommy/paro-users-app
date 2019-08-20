@@ -8,8 +8,11 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class Modal {
   bodyText: string;
   headerText: string;
-  activeModal: NgbActiveModal;
 
-  constructor(activeModal: NgbActiveModal) {}
+  constructor(private activeModal: NgbActiveModal) {}
+
+  handleClick(reason) {
+    this.activeModal.close(reason);
+  }
 }
 

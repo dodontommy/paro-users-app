@@ -7,7 +7,7 @@ const schema = `
     email: String!
     address: Address
     type: String!
-    is_admin: Boolean!
+    is_admin: Boolean
   }
 
   type Query {

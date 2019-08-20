@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title">{{headerText}}</h4>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.close('cancel')">
+  <button type="button" class="close" aria-label="Close" (click)="handleClick('cancel')">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -8,6 +8,6 @@
   {{ bodyText }}
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('cancel')">Cancel</button>
-  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('confirm')">Confirm</button>
+  <button type="button" class="btn btn-outline-dark" (click)="handleClick('cancel')">Cancel</button>
+  <button type="button" class="btn btn-outline-dark" (click)="handleClick('confirm')">Confirm</button>
 </div>
