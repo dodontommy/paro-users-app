@@ -23,7 +23,7 @@ export class UserEditComponent implements OnInit {
         this.router.navigate(['users']);
       },
       error => {
-        console.log("there was an error sending the query", error);
+        console.log('there was an error sending the query', error);
       }
     );
   }
@@ -31,8 +31,8 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.userService.getUser(params['id']).subscribe(data => {
-                this.user = data.data['User'];
-              });
+        this.user = data.data['User'];
+      });
     });
   }
 }

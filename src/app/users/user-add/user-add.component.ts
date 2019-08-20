@@ -18,7 +18,7 @@ export class UserAddComponent implements OnInit {
         this.router.navigate(['users']);
       },
       error => {
-        console.log("there was an error sending the query", error);
+        console.log('there was an error sending the query', error);
       }
     );
   }
