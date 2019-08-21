@@ -18,7 +18,7 @@ export class UserListComponent implements OnInit {
 
   openDeleteModal(user) {
     const modalRef = this.ms.open(Modal);
-    modalRef.componentInstance.headerText = "Are you sure?";
+    modalRef.componentInstance.headerText = 'Are you sure?';
     modalRef.componentInstance.bodyText = `This will permanently delete ${user.name}. You can never get them back.`;
     modalRef.result.then((result) => {
       if (result == 'confirm') {
@@ -42,7 +42,7 @@ export class UserListComponent implements OnInit {
         this.removeFromUsers(data.deleteUser.id);
       },
       error => {
-        console.log("there was an error sending the query", error);
+        console.log('there was an error sending the query', error);
       }
     );
   }

@@ -1,9 +1,9 @@
-const { GraphQLScalarType } = require("graphql");
+const { GraphQLScalarType } = require('graphql');
 
 // Define custome Address scalar type so apollo will accept it
 const Address = new GraphQLScalarType({
-  name: "Address",
-  description: "Address",
+  name: 'Address',
+  description: 'Address',
   parseValue(value) {
     return value;
   },
@@ -19,15 +19,15 @@ const Address = new GraphQLScalarType({
 const users = [
   {
     id: 1,
-    name: "Tommy Bonderenka",
-    email: "tommybonderenka@gmail.com",
+    name: 'Tommy Bonderenka',
+    email: 'tommybonderenka@gmail.com',
     is_admin: false,
-    type: "client",
+    type: 'client',
     address: {
-      state: "KS",
-      zip: "66101",
-      street: "643 Northrup Ave",
-      city: "Kansas City",
+      state: 'KS',
+      zip: '66101',
+      street: '643 Northrup Ave',
+      city: 'Kansas City',
     }
   }
 ];
@@ -46,9 +46,9 @@ const resolvers = {
           return Math.max(id, user.id);
         }, -1) + 1;
 
-      if (args.type != "internal") {
+      if (args.type != 'internal') {
         if (args.is_admin) {
-          throw new Error("Only internal users can be administrators");
+          throw new Error('Only internal users can be administrators');
         }
       }
       const newUser = {
@@ -74,9 +74,9 @@ const resolvers = {
       const index = users.findIndex(
         user => user.id == args.id
       );
-      if (args.type != "internal") {
+      if (args.type != 'internal') {
         if (args.is_admin) {
-          throw new Error("Only internal users can be administrators");
+          throw new Error('Only internal users can be administrators');
         }
       }
       users[index].name = args.name;

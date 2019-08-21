@@ -12,7 +12,7 @@ export class UserService {
   getUsers() {
     return this.apollo.watchQuery<Response>({
       query: CurrentUsers,
-      fetchPolicy: "network-only"
+      fetchPolicy: 'network-only'
     })
     .valueChanges
   }
@@ -39,7 +39,7 @@ export class UserService {
       variables: {
         id: userId
       },
-      fetchPolicy: "network-only"
+      fetchPolicy: 'network-only'
     })
     .valueChanges
   }
